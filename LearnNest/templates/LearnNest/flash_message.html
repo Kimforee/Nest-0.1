@@ -1,0 +1,37 @@
+
+{% extends 'LearnNest/nest.html' %}
+
+{% block content %}
+<style>
+
+.flash-message {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: absolute;
+    cursor: pointer;
+}
+</style>
+
+<div class="flash-message">
+    {{  flash_message }}
+    <script>
+    function showFlashMessage(element) {
+    var event = new CustomEvent('showFlashMessage');
+    element.dispatchEvent(event);
+    };
+
+    var flashMessages = document.getElementsByClassName('js-flash-message');
+    //show first flash message avilable in your page
+    showFlashMessage( {flash_message} ) ;
+    </script>
+</div>
+
+{% endblock content %}

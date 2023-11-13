@@ -1,0 +1,16 @@
+<h3 class="box" style="color: rgb(255, 255, 255);">Browse Topics</h3>
+<hr>
+
+<div class="topics_list box">
+
+        <a style="color: rgb(255, 255, 255);" href="{% url 'home' %}">All <span>[{{topics.count}}]</span></a>
+    
+</div>
+
+{% for topic in topics %}
+
+<div class="box">
+    <a style="color: rgb(255, 255, 255);" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}} [<span>{{topic.nest_set.all.count}}]</a>
+</div>
+
+{% endfor %}

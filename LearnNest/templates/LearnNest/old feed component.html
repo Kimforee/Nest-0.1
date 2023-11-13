@@ -1,0 +1,64 @@
+{% for nest in nests %}
+<div class="roomListRoom">
+   
+            <div>
+
+                <!-- if user is host -->
+                {% if nest.host.username|striptags == request.user.username|striptags %}
+                
+                <button  style="justify-content:space-evenly;width: 100px;">
+                <a href="{% url 'update-nest' nest.id %}">Edit</a>
+                </button>
+                
+                <button  style=" justify-content:space-evenly;width: 100px;">
+                <a href="{% url 'delete-nest' nest.id %}">Delete</a>
+                </button>
+                <!-- if user is member of a nest -->
+
+                {% elif request.user in nest.participants.all %}
+                
+                    <form action="{% url 'leave-nest' pk=nest.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" name="leave_request" value="Leaves Nest">
+                    </form>
+
+                {% endif %}
+
+                <!-- link host's profile -->
+                 
+                <a href="{% url 'user-profile' nest.host.id %}" 
+                   style="display: flex; justify-content: flex-end;
+                          text-decoration: none;">
+                    by : {{nest.host.username}}
+                </a>  
+
+                <!-- if user is host -->
+                {% if nest.host.username|striptags == request.user.username|striptags  %}
+                <label>you are a Guardian in this Nest</label>
+
+                <!-- if user is member of a nest -->
+                {% elif request.user in nest.participants.all   %}
+                <p>you are a member in this Nest</p>
+
+                {% else %}
+                
+                <!-- check if user id authenticated -->
+                {% if request.user.is_authenticated and request.user not in nest.participants.all %}
+                <div style=" display: flex;justify-content:flex-start;">
+                    <form action="{% url 'nest' pk=nest.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" name="join_request" value="Join Nest">
+                    </form>
+                </div>
+                {% endif %}
+                
+                {% endif %}
+                <h5> {{nest.id}} -- <a style="text-decoration: none;" href="{% url 'nest' nest.id %}">{{nest.name}}</a></h5>
+                <small> 
+                    {{nest.topic.name}} . {{nest}}
+
+                </small>
+            </div>
+            <br>
+</div>
+{% endfor %}

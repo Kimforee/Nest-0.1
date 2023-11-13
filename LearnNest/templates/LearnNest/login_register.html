@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if page == 'login' %}
+
+<div style="display: flex; justify-content: center;
+            align-items: center; margin: 0; flex-direction: column;">
+    <form style="display: flex; justify-content: center;
+    align-items: center; margin: 0; flex-direction: column;" action="" method="POST">
+        {% csrf_token %}
+
+        <label for="">Username</label>
+        <input type="text" name="username" id="" 
+        placeholder="Enter Username">
+
+        <label for="">Password</label>
+        <input type="password" name="password" id="" 
+        placeholder="Enter password">
+        <br>
+        <input type="submit" name="" id="" 
+        value="Login">
+    </form>
+    <br>
+    <p>haven't signed up yet</p>
+    <button>
+    <a style="text-decoration: none;" href="{% url 'register' %}">Sign up</a>
+    </button>
+</div>
+
+{% else %}
+
+<div style="display: flex; justify-content: center; align-items: center; margin: 0;">
+    <form  action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="" id="" 
+        value="Register">
+    </form>
+    <br>
+    <p>&nbsp;</p> 
+    <p>Already a member ? login now !</p>
+    <br>
+    <button>
+    <a style="text-decoration: none;" href="{% url 'login' %}">Login</a>
+    </button>
+</div>
+
+{% endif %}
+
+{% endblock content %}
