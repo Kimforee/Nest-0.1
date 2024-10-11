@@ -13,9 +13,9 @@
 ### Public Profile :
 ![image](https://github.com/user-attachments/assets/46ec37ec-64f1-485e-ac8e-5cccee0fc395)
 
-# LearnNest - Django Web Application
+# Nest - Django Web Application
 
-LearnNest is a web-based platform built using Django that integrates real-time features using Django Channels and Redis. This project showcases the use of neomorphic design for the user interface and handles asynchronous events like WebSocket connections for real-time messaging.
+Nest is a web-based platform built using Django that integrates real-time features using Django Channels and Redis. This project showcases the use of neomorphic design for the user interface and handles asynchronous events like WebSocket connections for real-time messaging.
 
 ## Features
 
